@@ -4,11 +4,10 @@ import '../constants/app_constants.dart';
 import '../models/weather_response.dart';
 
 class WeatherService {
-  Future<WeatherResponse> fetchWeather(double lat, double lon) async {
+  Future<WeatherResponse> fetchWeatherByCity(String city) async {
     final uri = Uri.parse(
       '${AppConstants.baseUrl}'
-      '?lat=$lat&lon=$lon'
-      '&exclude=minutely,hourly,alerts'
+      '?q=${Uri.encodeComponent(city)}'
       '&units=${AppConstants.units}'
       '&appid=${AppConstants.apiKey}',
     );
@@ -17,6 +16,8 @@ class WeatherService {
 
     if (response.statusCode == 200) {
       return WeatherResponse.fromJson(jsonDecode(response.body));
+    } else if (response.statusCode == 404) {
+      throw Exception('City not found. Please check the name and try again.');
     } else {
       throw Exception('Failed to load weather data: ${response.statusCode}');
     }

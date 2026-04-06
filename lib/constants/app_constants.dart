@@ -1,10 +1,10 @@
 class AppConstants {
-  // OpenWeatherMap One Call API 3.0 base URL
+  // OpenWeatherMap Current Weather API 2.5 (free tier)
   static const String baseUrl =
-      'https://api.openweathermap.org/data/3.0/onecall';
+      'https://api.openweathermap.org/data/2.5/weather';
 
   // Replace with your actual OpenWeatherMap API key
-  static const String apiKey = 'YOUR_API_KEY_HERE';
+  static const String apiKey = 'f3634617bbb96559e22fe14cc6fdd372';
 
   // Units: 'metric' (Celsius), 'imperial' (Fahrenheit), 'standard' (Kelvin)
   static const String units = 'metric';
